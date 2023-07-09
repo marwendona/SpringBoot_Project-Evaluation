@@ -10,7 +10,7 @@ import tn.primatec.evaluation.dao.UserRepository;
 import tn.primatec.evaluation.dto.EmployeeDto;
 import tn.primatec.evaluation.dto.UserDto;
 import tn.primatec.evaluation.exception.ResourceNotFoundException;
-import tn.primatec.evaluation.model.Employee;
+import tn.primatec.evaluation.model.employee.Employee;
 import tn.primatec.evaluation.model.user.User;
 import tn.primatec.evaluation.service.UserService;
 
@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
 
         var employeeDto = new EmployeeDto();
 
+        employeeDto.setUserDto(userDto);
         employeeDto.setFirstName(employee.getFirstName());
         employeeDto.setLastName(employee.getLastName());
         employeeDto.setDepartment(employee.getDepartment());

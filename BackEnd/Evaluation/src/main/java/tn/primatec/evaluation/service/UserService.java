@@ -1,7 +1,7 @@
 package tn.primatec.evaluation.service;
 
 import org.springframework.http.ResponseEntity;
-import tn.primatec.evaluation.model.Employee;
+import tn.primatec.evaluation.model.employee.Employee;
 import tn.primatec.evaluation.model.user.User;
 
 public interface UserService {

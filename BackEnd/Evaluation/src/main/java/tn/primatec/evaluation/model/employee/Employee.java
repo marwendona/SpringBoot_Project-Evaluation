@@ -1,4 +1,4 @@
-package tn.primatec.evaluation.model;
+package tn.primatec.evaluation.model.employee;
 
 import lombok.Builder;
 import lombok.Data;

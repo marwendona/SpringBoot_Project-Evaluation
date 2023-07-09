@@ -3,7 +3,7 @@ package tn.primatec.evaluation.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import tn.primatec.evaluation.model.Employee;
+import tn.primatec.evaluation.model.employee.Employee;
 import tn.primatec.evaluation.model.user.User;
 import tn.primatec.evaluation.service.UserService;
 

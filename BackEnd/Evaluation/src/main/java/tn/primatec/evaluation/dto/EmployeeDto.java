@@ -2,6 +2,7 @@ package tn.primatec.evaluation.dto;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Table(name = "employee")
@@ -10,6 +11,11 @@ public class EmployeeDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
+    private UserDto userDto;
 
     @Column(name = "firstName")
     private String firstName;
