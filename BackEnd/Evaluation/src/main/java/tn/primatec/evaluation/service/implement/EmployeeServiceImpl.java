@@ -1,8 +1,6 @@
 package tn.primatec.evaluation.service.implement;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tn.primatec.evaluation.adapter.EmployeeAdapter;
 import tn.primatec.evaluation.dao.EmployeeRepository;
@@ -48,11 +46,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         EmployeeDto employeeDtoFromDb = findEmployeeById(id);
         System.out.println(employeeDtoFromDb.toString());
 
-        employeeDtoFromDb.setFirstName(employee.getFirstName());
-        employeeDtoFromDb.setLastName(employee.getLastName());
         employeeDtoFromDb.setDepartment(employee.getDepartment());
         employeeDtoFromDb.setTeam(employee.getTeam());
+        employeeDtoFromDb.setNameAndSurname(employee.getNameAndSurname());
         employeeDtoFromDb.setJobTitle(employee.getJobTitle());
+        employeeDtoFromDb.setEmploymentDate(employee.getEmploymentDate());
+        employeeDtoFromDb.setEmploymentType(employee.getEmploymentType());
+        employeeDtoFromDb.setGrade(employee.getGrade());
+        employeeDtoFromDb.setLastEvaluationScore(employee.getLastEvaluationScore());
+        employeeDtoFromDb.setCurrentEvaluationScore(employee.getCurrentEvaluationScore());
+        employeeDtoFromDb.setReviewDate(employee.getReviewDate());
+        employeeDtoFromDb.setReviewer(employee.getReviewer());
 
         employeeRepository.save(employeeDtoFromDb);
     }

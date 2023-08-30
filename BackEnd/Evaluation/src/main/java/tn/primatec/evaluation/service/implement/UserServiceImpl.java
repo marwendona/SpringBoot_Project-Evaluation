@@ -52,11 +52,18 @@ public class UserServiceImpl implements UserService {
         var employeeDto = new EmployeeDto();
 
         employeeDto.setUserDto(userDto);
-        employeeDto.setFirstName(employee.getFirstName());
-        employeeDto.setLastName(employee.getLastName());
         employeeDto.setDepartment(employee.getDepartment());
         employeeDto.setTeam(employee.getTeam());
+        employeeDto.setNameAndSurname(employee.getNameAndSurname());
         employeeDto.setJobTitle(employee.getJobTitle());
+        employeeDto.setEmploymentDate(employee.getEmploymentDate());
+        employeeDto.setEmploymentType(employee.getEmploymentType());
+        employeeDto.setGrade(employee.getGrade());
+        employeeDto.setLastEvaluationScore(employee.getLastEvaluationScore());
+        employeeDto.setCurrentEvaluationScore(employee.getCurrentEvaluationScore());
+        employeeDto.setReviewDate(employee.getReviewDate());
+        employeeDto.setReviewer(employee.getReviewer());
+
         employeeDto = employeeRepository.save(employeeDto);
 
         return ResponseEntity.created(URI.create(BASE_URL + "/users/" + userDto.getId()
