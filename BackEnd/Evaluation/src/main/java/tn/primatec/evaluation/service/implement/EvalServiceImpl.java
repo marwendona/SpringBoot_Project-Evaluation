@@ -3,10 +3,7 @@ package tn.primatec.evaluation.service.implement;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
 import tn.primatec.evaluation.model.employee.Employee;
-import tn.primatec.evaluation.model.eval.ObjectivesAndProactivity;
-import tn.primatec.evaluation.model.eval.Satisfaction;
-import tn.primatec.evaluation.model.eval.Stability;
-import tn.primatec.evaluation.model.eval.TechnicalEvaluation;
+import tn.primatec.evaluation.model.eval.*;
 import tn.primatec.evaluation.service.EvalService;
 
 import java.io.FileInputStream;
@@ -346,5 +343,46 @@ public class EvalServiceImpl implements EvalService {
 
         fileInputStream.close();
         return objectivesAndProactivities;
+    }
+
+    @Override
+    public List<CareerAndTrainings> loadCareersAndTrainingsFromExcel(String filePath) throws IOException {
+        List<CareerAndTrainings> careersAndTrainings = new ArrayList<>();
+
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        Workbook workbook = WorkbookFactory.create(fileInputStream);
+
+        Sheet sheet = workbook.getSheetAt(1);
+
+        Iterator<Row> rowIterator = sheet.iterator();
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            CareerAndTrainings careerAndTrainings = new CareerAndTrainings();
+
+            Cell whichPathYouSeeItSuitableForYouCell = row.getCell(47);
+            Cell doYouHaveTargetRoleOrPositionCell = row.getCell(48);
+            Cell inOrderToReachYourObjective_RoleWhatDoYouRequestForTrainingCell = row.getCell(49);
+
+            if (whichPathYouSeeItSuitableForYouCell != null) {
+                careerAndTrainings.setWhichPathYouSeeItSuitableForYou(whichPathYouSeeItSuitableForYouCell.getStringCellValue());
+            }
+
+            if (doYouHaveTargetRoleOrPositionCell != null) {
+                careerAndTrainings.setDoYouHaveTargetRoleOrPosition(doYouHaveTargetRoleOrPositionCell.getStringCellValue());
+            }
+
+            if (inOrderToReachYourObjective_RoleWhatDoYouRequestForTrainingCell != null) {
+                careerAndTrainings.setInOrderToReachYourObjective_RoleWhatDoYouRequestForTraining(inOrderToReachYourObjective_RoleWhatDoYouRequestForTrainingCell.getStringCellValue());
+            }
+
+            careersAndTrainings.add(careerAndTrainings);
+        }
+
+        fileInputStream.close();
+        return careersAndTrainings;
     }
 }
