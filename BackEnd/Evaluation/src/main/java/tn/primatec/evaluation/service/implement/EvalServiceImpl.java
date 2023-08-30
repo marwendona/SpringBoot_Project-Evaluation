@@ -385,4 +385,55 @@ public class EvalServiceImpl implements EvalService {
         fileInputStream.close();
         return careersAndTrainings;
     }
+
+    @Override
+    public List<YearlyEvaluation> loadYearlyEvaluationFromExcel(String filePath) throws IOException {
+        List<YearlyEvaluation> yearlyEvaluations = new ArrayList<>();
+
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        Workbook workbook = WorkbookFactory.create(fileInputStream);
+
+        Sheet sheet = workbook.getSheetAt(1);
+
+        Iterator<Row> rowIterator = sheet.iterator();
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            YearlyEvaluation yearlyEvaluation = new YearlyEvaluation();
+
+            Cell salaryIncreaseCell = row.getCell(51);
+            Cell gradeCell = row.getCell(52);
+            Cell accumulativeScoreCell = row.getCell(53);
+            Cell scoreToReachNextGradeCell = row.getCell(54);
+            Cell satisfactionWithTheGradeCell = row.getCell(55);
+
+            if (salaryIncreaseCell != null) {
+                yearlyEvaluation.setSalaryIncrease((float) salaryIncreaseCell.getNumericCellValue());
+            }
+
+            if (gradeCell != null) {
+                yearlyEvaluation.setGrade(gradeCell.getStringCellValue());
+            }
+
+            if (accumulativeScoreCell != null) {
+                yearlyEvaluation.setAccumulativeScore((float) accumulativeScoreCell.getNumericCellValue());
+            }
+
+            if (scoreToReachNextGradeCell != null) {
+                yearlyEvaluation.setScoreToReachNextGrade((int) scoreToReachNextGradeCell.getNumericCellValue());
+            }
+
+            if (satisfactionWithTheGradeCell != null) {
+                yearlyEvaluation.setSatisfactionWithTheGrade(satisfactionWithTheGradeCell.getStringCellValue());
+            }
+
+            yearlyEvaluations.add(yearlyEvaluation);
+        }
+
+        fileInputStream.close();
+        return yearlyEvaluations;
+    }
 }

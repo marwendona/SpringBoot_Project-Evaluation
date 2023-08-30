@@ -13,5 +13,6 @@ public interface EvalService {
     List<TechnicalEvaluation> loadTechnicalEvaluationsFromExcel(String filePath) throws IOException;
     List<ObjectivesAndProactivity> loadObjectivesAndProactivitiesFromExcel(String filePath) throws IOException;
     List<CareerAndTrainings> loadCareersAndTrainingsFromExcel(String filePath) throws IOException;
+    List<YearlyEvaluation> loadYearlyEvaluationFromExcel(String filePath) throws IOException;
 
 }

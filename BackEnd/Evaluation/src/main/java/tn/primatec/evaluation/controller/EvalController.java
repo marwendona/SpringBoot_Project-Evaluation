@@ -60,4 +60,10 @@ public class EvalController {
         String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
         return evalService.loadCareersAndTrainingsFromExcel(filePath);
     }
+
+    @GetMapping("/yearly_evaluation")
+    public List<YearlyEvaluation> getYearlyEvaluation() throws IOException {
+        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
+        return evalService.loadYearlyEvaluationFromExcel(filePath);
+    }
 }
