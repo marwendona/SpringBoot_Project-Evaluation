@@ -3,6 +3,7 @@ package tn.primatec.evaluation.service.implement;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
 import tn.primatec.evaluation.model.employee.Employee;
+import tn.primatec.evaluation.model.eval.ObjectivesAndProactivity;
 import tn.primatec.evaluation.model.eval.Satisfaction;
 import tn.primatec.evaluation.model.eval.Stability;
 import tn.primatec.evaluation.model.eval.TechnicalEvaluation;
@@ -289,5 +290,61 @@ public class EvalServiceImpl implements EvalService {
 
         fileInputStream.close();
         return technicalEvaluations;
+    }
+
+    @Override
+    public List<ObjectivesAndProactivity> loadObjectivesAndProactivitiesFromExcel(String filePath) throws IOException {
+        List<ObjectivesAndProactivity> objectivesAndProactivities = new ArrayList<>();
+
+        FileInputStream fileInputStream = new FileInputStream(filePath);
+        Workbook workbook = WorkbookFactory.create(fileInputStream);
+
+        Sheet sheet = workbook.getSheetAt(1);
+
+        Iterator<Row> rowIterator = sheet.iterator();
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            ObjectivesAndProactivity objectivesAndProactivity = new ObjectivesAndProactivity();
+
+            Cell lastYearObjectivesCell = row.getCell(16);
+            Cell achievementsForLastYearCell = row.getCell(17);
+            Cell targetsForNextYearCell = row.getCell(18);
+            Cell keysAndToolsForTargetsSuccessCell = row.getCell(19);
+            Cell didYouEverRaise_HighlightAProblemCell = row.getCell(20);
+            Cell doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTaskCell = row.getCell(23);
+
+            if (lastYearObjectivesCell != null) {
+                objectivesAndProactivity.setLastYearObjectives(lastYearObjectivesCell.getStringCellValue());
+            }
+
+            if (achievementsForLastYearCell != null) {
+                objectivesAndProactivity.setAchievementsForLastYear(achievementsForLastYearCell.getStringCellValue());
+            }
+
+            if (targetsForNextYearCell != null) {
+                objectivesAndProactivity.setTargetsForNextYear(targetsForNextYearCell.getStringCellValue());
+            }
+
+            if (keysAndToolsForTargetsSuccessCell != null) {
+                objectivesAndProactivity.setKeysAndToolsForTargetsSuccess(keysAndToolsForTargetsSuccessCell.getStringCellValue());
+            }
+
+            if (didYouEverRaise_HighlightAProblemCell != null) {
+                objectivesAndProactivity.setDidYouEverRaise_HighlightAProblem(didYouEverRaise_HighlightAProblemCell.getStringCellValue());
+            }
+
+            if (doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTaskCell != null) {
+                objectivesAndProactivity.setDoYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask(doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTaskCell.getStringCellValue());
+            }
+
+            objectivesAndProactivities.add(objectivesAndProactivity);
+        }
+
+        fileInputStream.close();
+        return objectivesAndProactivities;
     }
 }

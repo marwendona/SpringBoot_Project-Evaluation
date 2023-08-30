@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import tn.primatec.evaluation.model.employee.Employee;
+import tn.primatec.evaluation.model.eval.ObjectivesAndProactivity;
 import tn.primatec.evaluation.model.eval.Satisfaction;
 import tn.primatec.evaluation.model.eval.Stability;
 import tn.primatec.evaluation.model.eval.TechnicalEvaluation;
@@ -46,8 +47,14 @@ public class EvalController {
     }
 
     @GetMapping("/technical_evaluations")
-    public List<TechnicalEvaluation> gettechnicalEvaluations() throws IOException {
+    public List<TechnicalEvaluation> getTechnicalEvaluations() throws IOException {
         String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
         return evalService.loadTechnicalEvaluationsFromExcel(filePath);
+    }
+
+    @GetMapping("/objectives_and_proactivities")
+    public List<ObjectivesAndProactivity> getObjectivesAndProactivity() throws IOException {
+        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
+        return evalService.loadObjectivesAndProactivitiesFromExcel(filePath);
     }
 }
