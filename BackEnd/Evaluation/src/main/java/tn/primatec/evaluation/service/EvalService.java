@@ -1,6 +1,6 @@
 package tn.primatec.evaluation.service;
 
-import tn.primatec.evaluation.model.employee.Employee;
+import tn.primatec.evaluation.model.Employee;
 import tn.primatec.evaluation.model.eval.*;
 
 import java.io.IOException;

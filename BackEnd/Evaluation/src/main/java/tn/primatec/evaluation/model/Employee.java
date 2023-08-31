@@ -1,4 +1,4 @@
-package tn.primatec.evaluation.model.employee;
+package tn.primatec.evaluation.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -34,12 +34,6 @@ public class Employee {
         this.currentEvaluationScore = currentEvaluationScore;
         this.reviewDate = reviewDate;
         this.reviewer = reviewer;
-    }
-
-    public Employee(String department, String team, String nameAndSurname) {
-        this.department = department;
-        this.team = team;
-        this.nameAndSurname = nameAndSurname;
     }
 
     public Employee() {

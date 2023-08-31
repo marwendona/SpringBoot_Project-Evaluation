@@ -1,8 +1,13 @@
 package tn.primatec.evaluation.service.implement;
 
+import jakarta.transaction.Transactional;
 import org.apache.poi.ss.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tn.primatec.evaluation.model.employee.Employee;
+import tn.primatec.evaluation.adapter.EmployeeAdapter;
+import tn.primatec.evaluation.dao.EmployeeRepository;
+import tn.primatec.evaluation.dao.SatisfactionRepository;
+import tn.primatec.evaluation.model.Employee;
 import tn.primatec.evaluation.model.eval.*;
 import tn.primatec.evaluation.service.EvalService;
 
@@ -15,9 +20,18 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
+@Transactional
 public class EvalServiceImpl implements EvalService {
 
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private EmployeeRepository employeeRepository;
+    private SatisfactionRepository satisfactionRepository;
+
+    @Autowired
+    public EvalServiceImpl(EmployeeRepository employeeRepository, SatisfactionRepository satisfactionRepository) {
+        this.employeeRepository = employeeRepository;
+        this.satisfactionRepository = satisfactionRepository;
+    }
 
     @Override
     public List<Employee> loadEmployeesFromExcel(String filePath) throws Exception {
@@ -95,6 +109,7 @@ public class EvalServiceImpl implements EvalService {
             }
 
             employees.add(employee);
+            employeeRepository.save(EmployeeAdapter.toEmployeeDto(employee));
         }
 
         fileInputStream.close();

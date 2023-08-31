@@ -14,10 +14,10 @@ public class EmployeeDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @ToString.Exclude
-    private UserDto userDto;
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", nullable = false)
+//    @ToString.Exclude
+//    private UserDto userDto;
 
     @Column(name = "department")
     private String department;

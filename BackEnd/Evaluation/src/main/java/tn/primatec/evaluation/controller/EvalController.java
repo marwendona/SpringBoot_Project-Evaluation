@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tn.primatec.evaluation.model.employee.Employee;
+import tn.primatec.evaluation.model.Employee;
 import tn.primatec.evaluation.model.eval.*;
 import tn.primatec.evaluation.service.EvalService;
 
@@ -19,6 +19,7 @@ import static tn.primatec.evaluation.application.ApplicationProperties.BASE_URL;
 @CrossOrigin
 public class EvalController {
     private final EvalService evalService;
+    private static final String FILE_PATH = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
 
     @Autowired
     public EvalController(EvalService evalService) {
@@ -27,43 +28,36 @@ public class EvalController {
 
     @GetMapping("/employees")
     public List<Employee> getEmployees() throws Exception {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadEmployeesFromExcel(filePath);
+        return evalService.loadEmployeesFromExcel(FILE_PATH);
     }
 
     @GetMapping("/satisfactions")
     public List<Satisfaction> getSatisfactions() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadSatisfactionsFromExcel(filePath);
+        return evalService.loadSatisfactionsFromExcel(FILE_PATH);
     }
 
     @GetMapping("/stabilities")
     public List<Stability> getStabilities() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadStabilitiesFromExcel(filePath);
+        return evalService.loadStabilitiesFromExcel(FILE_PATH);
     }
 
     @GetMapping("/technical_evaluations")
     public List<TechnicalEvaluation> getTechnicalEvaluations() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadTechnicalEvaluationsFromExcel(filePath);
+        return evalService.loadTechnicalEvaluationsFromExcel(FILE_PATH);
     }
 
     @GetMapping("/objectives_and_proactivities")
     public List<ObjectivesAndProactivity> getObjectivesAndProactivity() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadObjectivesAndProactivitiesFromExcel(filePath);
+        return evalService.loadObjectivesAndProactivitiesFromExcel(FILE_PATH);
     }
 
     @GetMapping("/careers_and_trainings")
     public List<CareerAndTrainings> getCareerAndTrainings() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadCareersAndTrainingsFromExcel(filePath);
+        return evalService.loadCareersAndTrainingsFromExcel(FILE_PATH);
     }
 
     @GetMapping("/yearly_evaluation")
     public List<YearlyEvaluation> getYearlyEvaluation() throws IOException {
-        String filePath = "C:\\Users\\MSI\\Documents\\IIT\\2GLID\\Summer Internship\\EvaluationProcessTestIntership - DataOnly.xlsm";
-        return evalService.loadYearlyEvaluationFromExcel(filePath);
+        return evalService.loadYearlyEvaluationFromExcel(FILE_PATH);
     }
 }
