@@ -17,22 +17,24 @@ public class EmployeeAdapter {
         employeeDto.setCurrentEvaluationScore(employee.getCurrentEvaluationScore());
         employeeDto.setReviewDate(employee.getReviewDate());
         employeeDto.setReviewer(employee.getReviewer());
+
         return employeeDto;
     }
 
-//    public static Employee toEmployee(EmployeeDto employeeDto) {
-//        var employee = new Employee();
-//        return employee.builder().department(employeeDto.getDepartment())
-//                .team(employeeDto.getTeam())
-//                .nameAndSurname(employeeDto.getNameAndSurname())
-//                .jobTitle(employeeDto.getJobTitle())
-//                .employmentDate(employeeDto.getEmploymentDate())
-//                .employmentType(employeeDto.getEmploymentType())
-//                .grade(employeeDto.getGrade())
-//                .lastEvaluationScore((employeeDto.getLastEvaluationScore()))
-//                .currentEvaluationScore(employeeDto.getCurrentEvaluationScore())
-//                .reviewDate(employeeDto.getReviewDate())
-//                .reviewer(employeeDto.getReviewer())
-//                .build();
-//    }
+    public static Employee toEmployee(EmployeeDto employeeDto) {
+        var employee = new Employee();
+        employee.setDepartment(employeeDto.getDepartment());
+        employee.setTeam(employeeDto.getTeam());
+        employee.setNameAndSurname(employeeDto.getNameAndSurname());
+        employee.setJobTitle(employeeDto.getJobTitle());
+        employee.setEmploymentDate(employeeDto.getEmploymentDate());
+        employee.setEmploymentType(employeeDto.getEmploymentType());
+        employee.setGrade(employeeDto.getGrade());
+        employee.setLastEvaluationScore(employeeDto.getLastEvaluationScore());
+        employee.setCurrentEvaluationScore(employeeDto.getCurrentEvaluationScore());
+        employee.setReviewDate(employeeDto.getReviewDate());
+        employee.setReviewer(employeeDto.getReviewer());
+
+        return employee;
+    }
 }

@@ -2,7 +2,6 @@ package tn.primatec.evaluation.dto;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.ToString;
 
 import java.util.Date;
 
@@ -13,11 +12,6 @@ public class EmployeeDto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", nullable = false)
-//    @ToString.Exclude
-//    private UserDto userDto;
 
     @Column(name = "department")
     private String department;
@@ -51,4 +45,28 @@ public class EmployeeDto {
 
     @Column(name = "reviewer")
     private String reviewer;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "satisfaction_id")
+    private SatisfactionDto satisfaction;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stability_id")
+    private StabilityDto stability;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "technical_evaluation_id")
+    private TechnicalEvaluationDto technicalEvaluation;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "objectives_and_proactivity_id")
+    private ObjectivesAndProactivityDto objectivesAndProactivity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "career_and_trainings_id")
+    private CareerAndTrainingsDto careerAndTrainings;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "yearly_evaluation_id")
+    private YearlyEvaluationDto yearlyEvaluation;
 }

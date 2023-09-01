@@ -16,4 +16,7 @@ public class StabilityDto {
 
     @Column(name = "areYouOpenToTechnica_sOffers")
     private String areYouOpenToTechnica_sOffers;
+
+    @OneToOne(mappedBy = "stability")
+    private EmployeeDto employee;
 }

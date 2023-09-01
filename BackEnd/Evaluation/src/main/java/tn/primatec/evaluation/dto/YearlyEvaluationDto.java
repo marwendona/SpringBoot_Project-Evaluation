@@ -25,4 +25,7 @@ public class YearlyEvaluationDto {
 
     @Column(name = "satisfactionWithTheGrade")
     private String satisfactionWithTheGrade;
+
+    @OneToOne(mappedBy = "yearlyEvaluation")
+    private EmployeeDto employee;
 }

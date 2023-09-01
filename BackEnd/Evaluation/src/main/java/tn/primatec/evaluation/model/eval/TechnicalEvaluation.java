@@ -32,8 +32,12 @@ public class TechnicalEvaluation {
         this.developerScoreSoftSkills = developerScoreSoftSkills;
         this.teamLeadScoreDisciplinary_RespectOfProcess_Punctuality = teamLeadScoreDisciplinary_RespectOfProcess_Punctuality;
         this.developerScoreDisciplinary_RespectOfProcess_Punctuality = developerScoreDisciplinary_RespectOfProcess_Punctuality;
-        this.teamLeadTotalScore = teamLeadTotalScore;
-        this.developerTotalScore = developerTotalScore;
+        teamLeadTotalScore = (teamLeadScoreTechnicalKnowledgeAndExpertise + teamLeadScoreQualityOfWork
+                + teamLeadScoreProactivity + teamLeadScoreSoftSkills
+                + teamLeadScoreDisciplinary_RespectOfProcess_Punctuality) / 5;
+        developerTotalScore = (developerScoreTechnicalKnowledgeAndExpertise + developerScoreQualityOfWork
+                + developerScoreProactivity + developerScoreSoftSkills
+                + developerScoreDisciplinary_RespectOfProcess_Punctuality) / 5;
     }
 
     public TechnicalEvaluation() {

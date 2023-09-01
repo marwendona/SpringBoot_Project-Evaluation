@@ -17,6 +17,9 @@ public class CareerAndTrainingsDto {
     @Column(name = "doYouHaveTargetRoleOrPosition")
     private String doYouHaveTargetRoleOrPosition;
 
-    @Column(name = "inOrderToReachYourObjective_RoleWhatDoYouRequestForTraining")
+    @Column(name = "requestForTraining")
     private String inOrderToReachYourObjective_RoleWhatDoYouRequestForTraining;
+
+    @OneToOne(mappedBy = "careerAndTrainings")
+    private EmployeeDto employee;
 }

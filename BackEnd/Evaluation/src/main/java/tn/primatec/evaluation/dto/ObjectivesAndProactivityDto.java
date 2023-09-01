@@ -26,6 +26,9 @@ public class ObjectivesAndProactivityDto {
     @Column(name = "didYouEverRaise_HighlightAProblem ")
     private String didYouEverRaise_HighlightAProblem;
 
-    @Column(name = "doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask")
+    @Column(name = "supportInDifferentTopics")
     private String doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask;
+
+    @OneToOne(mappedBy = "objectivesAndProactivity")
+    private EmployeeDto employee;
 }

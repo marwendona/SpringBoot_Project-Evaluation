@@ -31,7 +31,10 @@ public class Satisfaction {
         this.satisfactionWithTeamBuilding = satisfactionWithTeamBuilding;
         this.satisfactionWithCareerPath = satisfactionWithCareerPath;
         this.didTheCompagnySatisfyYourAmbitions = didTheCompagnySatisfyYourAmbitions;
-        this.totalScore = totalScore;
+        totalScore = (teamAtmosphere + workload + compagnySatisfactionScale
+        + satisfactionWithTechnicalLeader + satisfactionWithTeamLeader + satisfactionWithProject
+                + satisfactionWithGroupLeader + satisfactionWithTeamBuilding
+                + satisfactionWithCareerPath + didTheCompagnySatisfyYourAmbitions) / 10;
     }
 
     public Satisfaction() {

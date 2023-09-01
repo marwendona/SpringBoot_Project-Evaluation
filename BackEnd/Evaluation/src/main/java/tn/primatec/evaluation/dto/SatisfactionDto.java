@@ -46,4 +46,7 @@ public class SatisfactionDto {
 
     @Column(name = "totalScore")
     private float totalScore;
+
+    @OneToOne(mappedBy = "satisfaction")
+    private EmployeeDto employee;
 }
