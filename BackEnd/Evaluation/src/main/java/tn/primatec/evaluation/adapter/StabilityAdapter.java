@@ -11,4 +11,12 @@ public class StabilityAdapter {
 
         return stabilityDto;
     }
+
+    public static Stability toStability(StabilityDto stabilityDto) {
+        var stability = new Stability();
+        stability.setAreYouActivelyLookingForJobOffers(stabilityDto.getAreYouActivelyLookingForJobOffers());
+        stability.setAreYouOpenToTechnica_sOffers(stabilityDto.getAreYouOpenToTechnica_sOffers()); // Assurez-vous que le nom de la méthode est correct
+
+        return stability;
+    }
 }

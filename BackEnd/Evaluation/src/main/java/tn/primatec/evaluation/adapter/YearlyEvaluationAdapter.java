@@ -14,4 +14,15 @@ public class YearlyEvaluationAdapter {
 
         return yearlyEvaluationDto;
     }
+
+    public static YearlyEvaluation toYearlyEvaluation(YearlyEvaluationDto yearlyEvaluationDto) {
+        var yearlyEvaluation = new YearlyEvaluation();
+        yearlyEvaluation.setSalaryIncrease(yearlyEvaluationDto.getSalaryIncrease());
+        yearlyEvaluation.setGrade(yearlyEvaluationDto.getGrade());
+        yearlyEvaluation.setAccumulativeScore(yearlyEvaluationDto.getAccumulativeScore());
+        yearlyEvaluation.setScoreToReachNextGrade(yearlyEvaluationDto.getScoreToReachNextGrade());
+        yearlyEvaluation.setSatisfactionWithTheGrade(yearlyEvaluationDto.getSatisfactionWithTheGrade());
+
+        return yearlyEvaluation;
+    }
 }

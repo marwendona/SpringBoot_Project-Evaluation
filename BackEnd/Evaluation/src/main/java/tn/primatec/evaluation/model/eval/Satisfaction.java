@@ -34,7 +34,7 @@ public class Satisfaction {
         totalScore = (teamAtmosphere + workload + compagnySatisfactionScale
         + satisfactionWithTechnicalLeader + satisfactionWithTeamLeader + satisfactionWithProject
                 + satisfactionWithGroupLeader + satisfactionWithTeamBuilding
-                + satisfactionWithCareerPath + didTheCompagnySatisfyYourAmbitions) / 10;
+                + satisfactionWithCareerPath + didTheCompagnySatisfyYourAmbitions) / 10.0f;
     }
 
     public Satisfaction() {

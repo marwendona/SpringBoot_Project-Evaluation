@@ -19,4 +19,20 @@ public class TechnicalEvaluationAdapter {
 
         return technicalEvaluationDto;
     }
+
+    public static TechnicalEvaluation toTechnicalEvaluation(TechnicalEvaluationDto technicalEvaluationDto) {
+        var technicalEvaluation = new TechnicalEvaluation();
+        technicalEvaluation.setTeamLeadScoreTechnicalKnowledgeAndExpertise(technicalEvaluationDto.getTeamLeadScoreTechnicalKnowledgeAndExpertise());
+        technicalEvaluation.setDeveloperScoreTechnicalKnowledgeAndExpertise(technicalEvaluationDto.getDeveloperScoreTechnicalKnowledgeAndExpertise());
+        technicalEvaluation.setTeamLeadScoreQualityOfWork(technicalEvaluationDto.getTeamLeadScoreQualityOfWork());
+        technicalEvaluation.setDeveloperScoreQualityOfWork(technicalEvaluationDto.getDeveloperScoreQualityOfWork());
+        technicalEvaluation.setTeamLeadScoreProactivity(technicalEvaluationDto.getTeamLeadScoreProactivity());
+        technicalEvaluation.setDeveloperScoreProactivity(technicalEvaluationDto.getDeveloperScoreProactivity());
+        technicalEvaluation.setTeamLeadScoreSoftSkills(technicalEvaluationDto.getTeamLeadScoreSoftSkills());
+        technicalEvaluation.setDeveloperScoreSoftSkills(technicalEvaluationDto.getDeveloperScoreSoftSkills());
+        technicalEvaluation.setTeamLeadScoreDisciplinary_RespectOfProcess_Punctuality(technicalEvaluationDto.getTeamLeadScoreDisciplinary_RespectOfProcess_Punctuality());
+        technicalEvaluation.setDeveloperScoreDisciplinary_RespectOfProcess_Punctuality(technicalEvaluationDto.getDeveloperScoreDisciplinary_RespectOfProcess_Punctuality());
+
+        return technicalEvaluation;
+    }
 }

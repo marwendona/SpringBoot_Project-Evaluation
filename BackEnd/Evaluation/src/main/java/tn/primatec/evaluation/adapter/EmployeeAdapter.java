@@ -1,7 +1,7 @@
 package tn.primatec.evaluation.adapter;
 
 import tn.primatec.evaluation.dto.EmployeeDto;
-import tn.primatec.evaluation.model.Employee;
+import tn.primatec.evaluation.model.employee.Employee;
 
 public class EmployeeAdapter {
     public static EmployeeDto toEmployeeDto(Employee employee){

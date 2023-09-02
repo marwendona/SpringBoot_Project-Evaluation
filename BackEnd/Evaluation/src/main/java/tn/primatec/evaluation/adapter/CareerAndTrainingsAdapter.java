@@ -12,4 +12,13 @@ public class CareerAndTrainingsAdapter {
 
         return careerAndTrainingsDto;
     }
+
+    public static CareerAndTrainings toCareerAndTrainings(CareerAndTrainingsDto careerAndTrainingsDto) {
+        var careerAndTrainings = new CareerAndTrainings();
+        careerAndTrainings.setWhichPathYouSeeItSuitableForYou(careerAndTrainingsDto.getWhichPathYouSeeItSuitableForYou());
+        careerAndTrainings.setDoYouHaveTargetRoleOrPosition(careerAndTrainingsDto.getDoYouHaveTargetRoleOrPosition());
+        careerAndTrainings.setInOrderToReachYourObjective_RoleWhatDoYouRequestForTraining(careerAndTrainingsDto.getInOrderToReachYourObjective_RoleWhatDoYouRequestForTraining());
+
+        return careerAndTrainings;
+    }
 }

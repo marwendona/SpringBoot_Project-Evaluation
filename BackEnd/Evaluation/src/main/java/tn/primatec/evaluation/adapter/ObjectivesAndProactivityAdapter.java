@@ -15,4 +15,16 @@ public class ObjectivesAndProactivityAdapter {
 
         return objectivesAndProactivityDto;
     }
+
+    public static ObjectivesAndProactivity toObjectivesAndProactivity(ObjectivesAndProactivityDto objectivesAndProactivityDto) {
+        var objectivesAndProactivity = new ObjectivesAndProactivity();
+        objectivesAndProactivity.setLastYearObjectives(objectivesAndProactivityDto.getLastYearObjectives());
+        objectivesAndProactivity.setAchievementsForLastYear(objectivesAndProactivityDto.getAchievementsForLastYear());
+        objectivesAndProactivity.setTargetsForNextYear(objectivesAndProactivityDto.getTargetsForNextYear());
+        objectivesAndProactivity.setKeysAndToolsForTargetsSuccess(objectivesAndProactivityDto.getKeysAndToolsForTargetsSuccess());
+        objectivesAndProactivity.setDidYouEverRaise_HighlightAProblem(objectivesAndProactivityDto.getDidYouEverRaise_HighlightAProblem());
+        objectivesAndProactivity.setDoYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask(objectivesAndProactivityDto.getDoYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask());
+
+        return objectivesAndProactivity;
+    }
 }
