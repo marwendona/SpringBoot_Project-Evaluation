@@ -9,13 +9,16 @@ import tn.primatec.evaluation.dao.*;
 import tn.primatec.evaluation.dto.*;
 import tn.primatec.evaluation.model.employee.Employee;
 import tn.primatec.evaluation.model.employee.EmployeeDetails;
+import tn.primatec.evaluation.model.employee.EmployeeSummary;
 import tn.primatec.evaluation.model.eval.*;
 import tn.primatec.evaluation.service.EvalService;
 
 import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,22 +26,10 @@ import java.util.Optional;
 public class EvalServiceImpl implements EvalService {
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private EmployeeRepository employeeRepository;
-    private SatisfactionRepository satisfactionRepository;
-    private StabilityRepository stabilityRepository;
-    private TechnicalEvaluationRepository technicalEvaluationRepository;
-    private ObjectivesAndProactivityRepository objectivesAndProactivityRepository;
-    private CareerAndTrainingsRepository careerAndTrainingsRepository;
-    private YearlyEvaluationRepository yearlyEvaluationRepository;
 
     @Autowired
-    public EvalServiceImpl(EmployeeRepository employeeRepository, SatisfactionRepository satisfactionRepository, StabilityRepository stabilityRepository, TechnicalEvaluationRepository technicalEvaluationRepository, ObjectivesAndProactivityRepository objectivesAndProactivityRepository, CareerAndTrainingsRepository careerAndTrainingsRepository, YearlyEvaluationRepository yearlyEvaluationRepository) {
+    public EvalServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-        this.satisfactionRepository = satisfactionRepository;
-        this.stabilityRepository = stabilityRepository;
-        this.technicalEvaluationRepository = technicalEvaluationRepository;
-        this.objectivesAndProactivityRepository = objectivesAndProactivityRepository;
-        this.careerAndTrainingsRepository = careerAndTrainingsRepository;
-        this.yearlyEvaluationRepository = yearlyEvaluationRepository;
     }
 
     @Override
@@ -333,6 +324,23 @@ public class EvalServiceImpl implements EvalService {
     }
 
     @Override
+    public List<EmployeeSummary> getAllEmployeesSummary() {
+        List<EmployeeDto> employeeDtos = employeeRepository.findAll();
+        List<EmployeeSummary> employeeSummaries = new ArrayList<>();
+
+        for (EmployeeDto employeeDto : employeeDtos) {
+            EmployeeSummary summary = new EmployeeSummary();
+            summary.setId(employeeDto.getId());
+            summary.setDepartment(employeeDto.getDepartment());
+            summary.setTeam(employeeDto.getTeam());
+            summary.setNameAndSurname(employeeDto.getNameAndSurname());
+            employeeSummaries.add(summary);
+        }
+
+        return employeeSummaries;
+    }
+
+    @Override
     public EmployeeDetails getEmployeeDetailsById(Long id) {
         Optional<EmployeeDto> employeeDtoOptional = employeeRepository.findById(id);
 
@@ -341,5 +349,46 @@ public class EvalServiceImpl implements EvalService {
         EmployeeDetails employeeDetails = EmployeeAdapter.toEmployeeDetails(employeeDto);
 
         return employeeDetails;
+    }
+
+    @Override
+    public EmployeeDetails updateEmployeeDetails(Long id, EmployeeDetails updatedEmployee) {
+        Optional<EmployeeDto> employeeDtoOptional = employeeRepository.findById(id);
+
+        EmployeeDto existingEmployee = employeeDtoOptional.get();
+
+        existingEmployee.setDepartment(updatedEmployee.getDepartment());
+        existingEmployee.setTeam(updatedEmployee.getTeam());
+        existingEmployee.setNameAndSurname(updatedEmployee.getNameAndSurname());
+        existingEmployee.setJobTitle(updatedEmployee.getJobTitle());
+        existingEmployee.setEmploymentDate(updatedEmployee.getEmploymentDate());
+        existingEmployee.setEmploymentType(updatedEmployee.getEmploymentType());
+        existingEmployee.setGrade(updatedEmployee.getGrade());
+        existingEmployee.setLastEvaluationScore(updatedEmployee.getLastEvaluationScore());
+        existingEmployee.setCurrentEvaluationScore(updatedEmployee.getCurrentEvaluationScore());
+        existingEmployee.setReviewDate(updatedEmployee.getReviewDate());
+        existingEmployee.setReviewer(updatedEmployee.getReviewer());
+
+        SatisfactionDto satisfactionDto = SatisfactionAdapter.toSatisfactionDto(updatedEmployee.getSatisfaction());
+        existingEmployee.setSatisfaction(satisfactionDto);
+
+        StabilityDto stabilityDto = StabilityAdapter.toStabilityDto(updatedEmployee.getStability());
+        existingEmployee.setStability(stabilityDto);
+
+        TechnicalEvaluationDto technicalEvaluationDto = TechnicalEvaluationAdapter.toTechnicalEvaluationDto(updatedEmployee.getTechnicalEvaluation());
+        existingEmployee.setTechnicalEvaluation(technicalEvaluationDto);
+
+        ObjectivesAndProactivityDto objectivesAndProactivityDto = ObjectivesAndProactivityAdapter.toObjectivesAndProactivityDto(updatedEmployee.getObjectivesAndProactivity());
+        existingEmployee.setObjectivesAndProactivity(objectivesAndProactivityDto);
+
+        CareerAndTrainingsDto careerAndTrainingsDto = CareerAndTrainingsAdapter.toCareerAndTrainingsDto(updatedEmployee.getCareerAndTrainings());
+        existingEmployee.setCareerAndTrainings(careerAndTrainingsDto);
+
+        YearlyEvaluationDto yearlyEvaluationDto = YearlyEvaluationAdapter.toYearlyEvaluationDto(updatedEmployee.getYearlyEvaluation());
+        existingEmployee.setYearlyEvaluation(yearlyEvaluationDto);
+
+        employeeRepository.save(existingEmployee);
+
+        return EmployeeAdapter.toEmployeeDetails(existingEmployee);
     }
 }
