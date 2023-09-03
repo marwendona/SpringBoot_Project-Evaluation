@@ -37,7 +37,7 @@ class EvalServiceImplTest {
 //    void loadEmployeesFromExcel() throws Exception {
 //        var employees = evalService.loadEmployeesFromExcel(FILE_PATH);
 //
-//        var expectedEmployees = List.of(Employee.builder().department("").build());
+//        var expectedEmployees = List.of(EmployeeSummary.builder().department("").build());
 ////        assertEquals(expectedEmployees, employees);
 ////        verify(employeeRepository).save(new EmployeeDto());
 //    }

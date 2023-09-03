@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import tn.primatec.evaluation.adapter.*;
 import tn.primatec.evaluation.dao.*;
 import tn.primatec.evaluation.dto.*;
-import tn.primatec.evaluation.model.employee.Employee;
 import tn.primatec.evaluation.model.employee.EmployeeDetails;
 import tn.primatec.evaluation.model.employee.EmployeeSummary;
 import tn.primatec.evaluation.model.eval.*;
@@ -25,7 +24,7 @@ import java.util.Optional;
 @Transactional
 public class EvalServiceImpl implements EvalService {
     private final DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
     public EvalServiceImpl(EmployeeRepository employeeRepository) {
@@ -80,7 +79,7 @@ public class EvalServiceImpl implements EvalService {
     }
 
     private EmployeeDto loadEmployee(Row row) throws Exception {
-        Employee employee = new Employee();
+        EmployeeDto employeeDto = new EmployeeDto();
 
         Cell departmentCell = row.getCell(0);
         Cell teamCell = row.getCell(1);
@@ -95,40 +94,40 @@ public class EvalServiceImpl implements EvalService {
         Cell reviewerCell = row.getCell(10);
 
         if (departmentCell != null) {
-            employee.setDepartment(departmentCell.getStringCellValue());
+            employeeDto.setDepartment(departmentCell.getStringCellValue());
         }
         if (teamCell != null) {
-            employee.setTeam(teamCell.getStringCellValue());
+            employeeDto.setTeam(teamCell.getStringCellValue());
         }
         if (nameAndSurnameCell != null) {
-            employee.setNameAndSurname(nameAndSurnameCell.getStringCellValue());
+            employeeDto.setNameAndSurname(nameAndSurnameCell.getStringCellValue());
         }
         if (jobTitleCell != null) {
-            employee.setJobTitle(jobTitleCell.getStringCellValue());
+            employeeDto.setJobTitle(jobTitleCell.getStringCellValue());
         }
         if (employmentDateCell != null) {
-            employee.setEmploymentDate(dateFormat.parse(employmentDateCell.getStringCellValue()));
+            employeeDto.setEmploymentDate(dateFormat.parse(employmentDateCell.getStringCellValue()));
         }
         if (employmentTypeCell != null) {
-            employee.setEmploymentType(employmentTypeCell.getStringCellValue());
+            employeeDto.setEmploymentType(employmentTypeCell.getStringCellValue());
         }
         if (gradeCell != null) {
-            employee.setGrade(gradeCell.getStringCellValue());
+            employeeDto.setGrade(gradeCell.getStringCellValue());
         }
         if (lastEvaluationScoreCell != null) {
-            employee.setLastEvaluationScore(lastEvaluationScoreCell.getNumericCellValue());
+            employeeDto.setLastEvaluationScore(lastEvaluationScoreCell.getNumericCellValue());
         }
         if (currentEvaluationScoreCell != null) {
-            employee.setCurrentEvaluationScore(currentEvaluationScoreCell.getNumericCellValue());
+            employeeDto.setCurrentEvaluationScore(currentEvaluationScoreCell.getNumericCellValue());
         }
         if (reviewDateCell != null) {
-            employee.setReviewDate(dateFormat.parse(reviewDateCell.getStringCellValue()));
+            employeeDto.setReviewDate(dateFormat.parse(reviewDateCell.getStringCellValue()));
         }
         if (reviewerCell != null) {
-            employee.setReviewer(reviewerCell.getStringCellValue());
+            employeeDto.setReviewer(reviewerCell.getStringCellValue());
         }
 
-        return EmployeeAdapter.toEmployeeDto(employee);
+        return employeeDto;
     }
 
     private SatisfactionDto loadSatisfaction(Row row) {

@@ -23,9 +23,9 @@ public class EvalController {
         this.evalService = evalService;
     }
 
-    @PostMapping("/data")
-    public void loadFromExcel() throws Exception {
-        evalService.loadFromExcel(FILE_PATH);
+    @PostMapping("/employees")
+    public void loadFromExcel(@RequestBody String filePath) throws Exception {
+        evalService.loadFromExcel(filePath);
     }
 
     @GetMapping("/employees")
@@ -34,16 +34,15 @@ public class EvalController {
         return ResponseEntity.ok(employeeSummaries);
     }
 
-    @GetMapping("/employee/{id}")
+    @GetMapping("/employees/{id}")
     public ResponseEntity<EmployeeDetails> getEmployeeDetailsById(@PathVariable Long id) {
         EmployeeDetails employeeDetails = evalService.getEmployeeDetailsById(id);
         return ResponseEntity.ok(employeeDetails);
     }
 
-    @PutMapping("/employee/{id}")
+    @PutMapping("/employees/{id}")
     public ResponseEntity<EmployeeDetails> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDetails updatedEmployee) {
         EmployeeDetails updatedDetails = evalService.updateEmployeeDetails(id, updatedEmployee);
         return ResponseEntity.ok(updatedDetails);
     }
-
 }

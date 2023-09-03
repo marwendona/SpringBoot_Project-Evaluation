@@ -1,0 +1,252 @@
+openapi: "3.0.3"
+info:
+  title: "Evaluation API"
+  description: "Evaluation API"
+  version: "1.0.0"
+servers:
+  - url: "https://"
+paths:
+  /api/v1/evals/employee/{id}:
+    put:
+      summary: "PUT api/v1/evals/employee/{id}"
+      operationId: "updateEmployee"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeeDetails"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/EmployeeDetails"
+  /api/v1/evals/employees:
+    get:
+      summary: "GET api/v1/evals/employees"
+      operationId: "getAllEmployeesSummary"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/EmployeeSummary"
+    post:
+      summary: "POST api/v1/evals/employees"
+      operationId: "loadFromExcel"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "string"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+  /api/v1/evals/employees/{id}:
+    get:
+      summary: "GET api/v1/evals/employees/{id}"
+      operationId: "getEmployeeDetailsById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/EmployeeDetails"
+components:
+  schemas:
+    Satisfaction:
+      type: "object"
+      properties:
+        teamAtmosphere:
+          type: "integer"
+          format: "int32"
+        workload:
+          type: "integer"
+          format: "int32"
+        compagnySatisfactionScale:
+          type: "integer"
+          format: "int32"
+        satisfactionWithTechnicalLeader:
+          type: "integer"
+          format: "int32"
+        satisfactionWithTeamLeader:
+          type: "integer"
+          format: "int32"
+        satisfactionWithProject:
+          type: "integer"
+          format: "int32"
+        satisfactionWithGroupLeader:
+          type: "integer"
+          format: "int32"
+        satisfactionWithTeamBuilding:
+          type: "integer"
+          format: "int32"
+        satisfactionWithCareerPath:
+          type: "integer"
+          format: "int32"
+        didTheCompagnySatisfyYourAmbitions:
+          type: "integer"
+          format: "int32"
+        totalScore:
+          type: "number"
+          format: "float"
+    Stability:
+      type: "object"
+      properties:
+        areYouActivelyLookingForJobOffers:
+          type: "string"
+        areYouOpenToTechnica_sOffers:
+          type: "string"
+    TechnicalEvaluation:
+      type: "object"
+      properties:
+        teamLeadScoreTechnicalKnowledgeAndExpertise:
+          type: "integer"
+          format: "int32"
+        developerScoreTechnicalKnowledgeAndExpertise:
+          type: "integer"
+          format: "int32"
+        teamLeadScoreQualityOfWork:
+          type: "integer"
+          format: "int32"
+        developerScoreQualityOfWork:
+          type: "integer"
+          format: "int32"
+        teamLeadScoreProactivity:
+          type: "integer"
+          format: "int32"
+        developerScoreProactivity:
+          type: "integer"
+          format: "int32"
+        teamLeadScoreSoftSkills:
+          type: "integer"
+          format: "int32"
+        developerScoreSoftSkills:
+          type: "integer"
+          format: "int32"
+        teamLeadScoreDisciplinary_RespectOfProcess_Punctuality:
+          type: "integer"
+          format: "int32"
+        developerScoreDisciplinary_RespectOfProcess_Punctuality:
+          type: "integer"
+          format: "int32"
+        teamLeadTotalScore:
+          type: "number"
+          format: "float"
+        developerTotalScore:
+          type: "number"
+          format: "float"
+    ObjectivesAndProactivity:
+      type: "object"
+      properties:
+        lastYearObjectives:
+          type: "string"
+        achievementsForLastYear:
+          type: "string"
+        targetsForNextYear:
+          type: "string"
+        keysAndToolsForTargetsSuccess:
+          type: "string"
+        didYouEverRaise_HighlightAProblem:
+          type: "string"
+        doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask:
+          type: "string"
+    CareerAndTrainings:
+      type: "object"
+      properties:
+        whichPathYouSeeItSuitableForYou:
+          type: "string"
+        doYouHaveTargetRoleOrPosition:
+          type: "string"
+        inOrderToReachYourObjective_RoleWhatDoYouRequestForTraining:
+          type: "string"
+    YearlyEvaluation:
+      type: "object"
+      properties:
+        salaryIncrease:
+          type: "number"
+          format: "float"
+        grade:
+          type: "string"
+        accumulativeScore:
+          type: "number"
+          format: "float"
+        scoreToReachNextGrade:
+          type: "integer"
+          format: "int32"
+        satisfactionWithTheGrade:
+          type: "string"
+    EmployeeDetails:
+      type: "object"
+      properties:
+        department:
+          type: "string"
+        team:
+          type: "string"
+        nameAndSurname:
+          type: "string"
+        jobTitle:
+          type: "string"
+        employmentDate:
+          type: "string"
+          format: "date-time"
+        employmentType:
+          type: "string"
+        grade:
+          type: "string"
+        lastEvaluationScore:
+          type: "number"
+          format: "double"
+        currentEvaluationScore:
+          type: "number"
+          format: "double"
+        reviewDate:
+          type: "string"
+          format: "date-time"
+        reviewer:
+          type: "string"
+        satisfaction:
+          $ref: "#/components/schemas/Satisfaction"
+        stability:
+          $ref: "#/components/schemas/Stability"
+        technicalEvaluation:
+          $ref: "#/components/schemas/TechnicalEvaluation"
+        objectivesAndProactivity:
+          $ref: "#/components/schemas/ObjectivesAndProactivity"
+        careerAndTrainings:
+          $ref: "#/components/schemas/CareerAndTrainings"
+        yearlyEvaluation:
+          $ref: "#/components/schemas/YearlyEvaluation"
+    EmployeeSummary:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+          format: "int64"
+        department:
+          type: "string"
+        team:
+          type: "string"
+        nameAndSurname:
+          type: "string"
