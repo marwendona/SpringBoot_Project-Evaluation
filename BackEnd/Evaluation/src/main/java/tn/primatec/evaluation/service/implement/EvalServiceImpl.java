@@ -137,9 +137,7 @@ public class EvalServiceImpl implements EvalService {
             employee.setReviewer(reviewerCell.getStringCellValue());
         }
 
-        EmployeeDto employeeDto = EmployeeAdapter.toEmployeeDto(employee);
-
-        return employeeDto;
+        return EmployeeAdapter.toEmployeeDto(employee);
     }
 
     private SatisfactionDto loadSatisfaction(Row row) {
@@ -187,9 +185,7 @@ public class EvalServiceImpl implements EvalService {
             satisfaction.setDidTheCompagnySatisfyYourAmbitions((int) didTheCompagnySatisfyYourAmbitionsCell.getNumericCellValue());
         }
 
-        SatisfactionDto satisfactionDto = SatisfactionAdapter.toSatisfactionDto(satisfaction);
-
-        return satisfactionDto;
+        return SatisfactionAdapter.toSatisfactionDto(satisfaction);
     }
 
     private StabilityDto loadStability(Row row) {
@@ -205,9 +201,7 @@ public class EvalServiceImpl implements EvalService {
             stability.setAreYouOpenToTechnica_sOffers(areYouOpenToTechnica_sOffersCell.getStringCellValue());
         }
 
-        StabilityDto stabilityDto = StabilityAdapter.toStabilityDto(stability);
-
-        return stabilityDto;
+        return StabilityAdapter.toStabilityDto(stability);
     }
 
     private TechnicalEvaluationDto loadTechnicalEvaluation(Row row) {
@@ -255,9 +249,7 @@ public class EvalServiceImpl implements EvalService {
             technicalEvaluation.setDeveloperScoreDisciplinary_RespectOfProcess_Punctuality((int) developerScoreDisciplinary_RespectOfProcess_PunctualityCell.getNumericCellValue());
         }
 
-        TechnicalEvaluationDto technicalEvaluationDto = TechnicalEvaluationAdapter.toTechnicalEvaluationDto(technicalEvaluation);
-
-        return technicalEvaluationDto;
+        return TechnicalEvaluationAdapter.toTechnicalEvaluationDto(technicalEvaluation);
     }
 
     private ObjectivesAndProactivityDto loadObjectivesAndProactivity(Row row) {
@@ -289,9 +281,7 @@ public class EvalServiceImpl implements EvalService {
             objectivesAndProactivity.setDoYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTask(doYouFeelYourSelfAbleToSupportInDifferentTopicsThanYourMainTaskCell.getStringCellValue());
         }
 
-        ObjectivesAndProactivityDto objectivesAndProactivityDto = ObjectivesAndProactivityAdapter.toObjectivesAndProactivityDto(objectivesAndProactivity);
-
-        return objectivesAndProactivityDto;
+        return ObjectivesAndProactivityAdapter.toObjectivesAndProactivityDto(objectivesAndProactivity);
     }
 
     private CareerAndTrainingsDto loadCareerAndTrainings(Row row) {
@@ -311,9 +301,7 @@ public class EvalServiceImpl implements EvalService {
             careerAndTrainings.setInOrderToReachYourObjective_RoleWhatDoYouRequestForTraining(inOrderToReachYourObjective_RoleWhatDoYouRequestForTrainingCell.getStringCellValue());
         }
 
-        CareerAndTrainingsDto careerAndTrainingsDto = CareerAndTrainingsAdapter.toCareerAndTrainingsDto(careerAndTrainings);
-
-        return careerAndTrainingsDto;
+        return CareerAndTrainingsAdapter.toCareerAndTrainingsDto(careerAndTrainings);
     }
 
     private YearlyEvaluationDto loadYearlyEvaluation(Row row) {
@@ -341,9 +329,7 @@ public class EvalServiceImpl implements EvalService {
             yearlyEvaluation.setSatisfactionWithTheGrade(satisfactionWithTheGradeCell.getStringCellValue());
         }
 
-        YearlyEvaluationDto yearlyEvaluationDto = YearlyEvaluationAdapter.toYearlyEvaluationDto(yearlyEvaluation);
-
-        return yearlyEvaluationDto;
+        return YearlyEvaluationAdapter.toYearlyEvaluationDto(yearlyEvaluation);
     }
 
     @Override
@@ -351,37 +337,8 @@ public class EvalServiceImpl implements EvalService {
         Optional<EmployeeDto> employeeDtoOptional = employeeRepository.findById(id);
 
         EmployeeDto employeeDto = employeeDtoOptional.get();
-        EmployeeDetails employeeDetails = new EmployeeDetails();
 
-        employeeDetails.setDepartment(employeeDto.getDepartment());
-        employeeDetails.setTeam(employeeDto.getTeam());
-        employeeDetails.setNameAndSurname(employeeDto.getNameAndSurname());
-        employeeDetails.setJobTitle(employeeDto.getJobTitle());
-        employeeDetails.setEmploymentDate(employeeDto.getEmploymentDate());
-        employeeDetails.setEmploymentType(employeeDto.getEmploymentType());
-        employeeDetails.setGrade(employeeDto.getGrade());
-        employeeDetails.setLastEvaluationScore(employeeDto.getLastEvaluationScore());
-        employeeDetails.setCurrentEvaluationScore(employeeDto.getCurrentEvaluationScore());
-        employeeDetails.setReviewDate(employeeDto.getReviewDate());
-        employeeDetails.setReviewer(employeeDto.getReviewer());
-
-        Satisfaction satisfaction = SatisfactionAdapter.toSatisfaction(employeeDto.getSatisfaction());
-        employeeDetails.setSatisfaction(satisfaction);
-
-        Stability stability = StabilityAdapter.toStability(employeeDto.getStability());
-        employeeDetails.setStability(stability);
-
-        TechnicalEvaluation technicalEvaluation = TechnicalEvaluationAdapter.toTechnicalEvaluation(employeeDto.getTechnicalEvaluation());
-        employeeDetails.setTechnicalEvaluation(technicalEvaluation);
-
-        ObjectivesAndProactivity objectivesAndProactivity = ObjectivesAndProactivityAdapter.toObjectivesAndProactivity(employeeDto.getObjectivesAndProactivity());
-        employeeDetails.setObjectivesAndProactivity(objectivesAndProactivity);
-
-        CareerAndTrainings careerAndTrainings = CareerAndTrainingsAdapter.toCareerAndTrainings(employeeDto.getCareerAndTrainings());
-        employeeDetails.setCareerAndTrainings(careerAndTrainings);
-
-        YearlyEvaluation yearlyEvaluation = YearlyEvaluationAdapter.toYearlyEvaluation(employeeDto.getYearlyEvaluation());
-        employeeDetails.setYearlyEvaluation(yearlyEvaluation);
+        EmployeeDetails employeeDetails = EmployeeAdapter.toEmployeeDetails(employeeDto);
 
         return employeeDetails;
     }

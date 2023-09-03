@@ -22,7 +22,7 @@ public class EvalController {
         this.evalService = evalService;
     }
 
-    @PutMapping("/data")
+    @PostMapping("/data")
     public void loadFromExcel() throws Exception {
         evalService.loadFromExcel(FILE_PATH);
     }

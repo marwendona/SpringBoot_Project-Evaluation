@@ -1,11 +1,9 @@
 package tn.primatec.evaluation.model.eval;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.extern.jackson.Jacksonized;
 
 @Data
-@Builder
 @Jacksonized
 public class TechnicalEvaluation {
     private int teamLeadScoreTechnicalKnowledgeAndExpertise;
@@ -21,25 +19,17 @@ public class TechnicalEvaluation {
     private float teamLeadTotalScore;
     private float developerTotalScore;
 
-    public TechnicalEvaluation(int teamLeadScoreTechnicalKnowledgeAndExpertise, int developerScoreTechnicalKnowledgeAndExpertise, int teamLeadScoreQualityOfWork, int developerScoreQualityOfWork, int teamLeadScoreProactivity, int developerScoreProactivity, int teamLeadScoreSoftSkills, int developerScoreSoftSkills, int teamLeadScoreDisciplinary_RespectOfProcess_Punctuality, int developerScoreDisciplinary_RespectOfProcess_Punctuality, float teamLeadTotalScore, float developerTotalScore) {
-        this.teamLeadScoreTechnicalKnowledgeAndExpertise = teamLeadScoreTechnicalKnowledgeAndExpertise;
-        this.developerScoreTechnicalKnowledgeAndExpertise = developerScoreTechnicalKnowledgeAndExpertise;
-        this.teamLeadScoreQualityOfWork = teamLeadScoreQualityOfWork;
-        this.developerScoreQualityOfWork = developerScoreQualityOfWork;
-        this.teamLeadScoreProactivity = teamLeadScoreProactivity;
-        this.developerScoreProactivity = developerScoreProactivity;
-        this.teamLeadScoreSoftSkills = teamLeadScoreSoftSkills;
-        this.developerScoreSoftSkills = developerScoreSoftSkills;
-        this.teamLeadScoreDisciplinary_RespectOfProcess_Punctuality = teamLeadScoreDisciplinary_RespectOfProcess_Punctuality;
-        this.developerScoreDisciplinary_RespectOfProcess_Punctuality = developerScoreDisciplinary_RespectOfProcess_Punctuality;
-        teamLeadTotalScore = (teamLeadScoreTechnicalKnowledgeAndExpertise + teamLeadScoreQualityOfWork
-                + teamLeadScoreProactivity + teamLeadScoreSoftSkills
-                + teamLeadScoreDisciplinary_RespectOfProcess_Punctuality) / 5;
-        developerTotalScore = (developerScoreTechnicalKnowledgeAndExpertise + developerScoreQualityOfWork
-                + developerScoreProactivity + developerScoreSoftSkills
-                + developerScoreDisciplinary_RespectOfProcess_Punctuality) / 5;
+    public TechnicalEvaluation() {
     }
 
-    public TechnicalEvaluation() {
+    public float getTeamLeadTotalScore() {
+        return (teamLeadScoreTechnicalKnowledgeAndExpertise + teamLeadScoreQualityOfWork
+                + teamLeadScoreProactivity + teamLeadScoreSoftSkills
+                + teamLeadScoreDisciplinary_RespectOfProcess_Punctuality) / 5.0f;
+    }
+    public float getDeveloperTotalScore() {
+        return (developerScoreTechnicalKnowledgeAndExpertise + developerScoreQualityOfWork
+                + developerScoreProactivity + developerScoreSoftSkills
+                + developerScoreDisciplinary_RespectOfProcess_Punctuality) / 5.0f;
     }
 }
